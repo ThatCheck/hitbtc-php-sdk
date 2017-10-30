@@ -26,6 +26,7 @@ class PublicClient
         if (!$this->httpClient) {
             $this->httpClient = new HttpClient([
                 'base_uri' => $this->host,
+                'verify' => false
             ]);
         }
 
@@ -41,5 +42,16 @@ class PublicClient
     public function getTickers()
     {
         return json_decode($this->getHttpClient()->get('/api/1/public/ticker')->getBody(), true);
+    }
+    
+    /*
+     * Get list of an active order book in the market
+     *
+     * @param string $ticker
+     * return @array
+    */
+    public function getOderBook($ticker)
+    {
+        return json_decode($this->getHttpClient()->get('/api/1/public/'.$ticker.'/orderbook')->getBody(), true);
     }
 }
