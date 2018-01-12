@@ -42,4 +42,14 @@ class PublicClient
     {
         return json_decode($this->getHttpClient()->get('/api/1/public/ticker')->getBody(), true);
     }
+   
+    public function getOrderBook($ticker)
+    {
+        return json_decode($this->getHttpClient()->get('/api/1/public/'.$ticker.'/orderbook')->getBody(), true);
+    }
+    
+    public function getSymbols()
+    {
+        return json_decode($this->getHttpClient()->get('/api/1/public/symbols')->getBody(), true);
+    }
 }
